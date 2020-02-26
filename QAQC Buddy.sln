@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAQC Buddy", "QAQC Buddy\QAQC Buddy.csproj", "{248B1B5A-3867-4B7F-9E18-2C9FAD690437}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{248B1B5A-3867-4B7F-9E18-2C9FAD690437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248B1B5A-3867-4B7F-9E18-2C9FAD690437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248B1B5A-3867-4B7F-9E18-2C9FAD690437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248B1B5A-3867-4B7F-9E18-2C9FAD690437}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2527BCD6-A8B6-499D-8E11-C08475639F50}
+	EndGlobalSection
+EndGlobal
