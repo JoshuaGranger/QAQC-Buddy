@@ -13,6 +13,8 @@ namespace QAQC_Buddy.Misc
         public static string PathExe = AppDomain.CurrentDomain.BaseDirectory;
         public static string PathFiles = Path.GetFullPath(Path.Combine(PathExe, "..", "Output Files\\"));
         public static string PathConfig = Path.GetFullPath(Path.Combine(PathExe, "..", "Configuration\\"));
+        public static string PathCover = PathConfig + "Cover.xlsx";
+        public static string PathGold = PathConfig + "gold.json";
 
         public static void ShowMsg(string text, string caption, MessageBoxButton mbbutton, MessageBoxImage mbimage)
         {

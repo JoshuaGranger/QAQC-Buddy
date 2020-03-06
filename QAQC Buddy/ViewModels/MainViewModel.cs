@@ -61,6 +61,13 @@ namespace QAQC_Buddy.ViewModels
             get { return docFilterText; }
             set { docFilterText = value; RaisePropertyChanged(nameof(DocFilterText)); DocFilterChanged(); }
         }
+        private bool _includeCover;
+        public bool IncludeCover
+        {
+            get { return _includeCover; }
+            set { _includeCover = value; RaisePropertyChanged(nameof(IncludeCover)); }
+        }
+
 
         // ICommand
         public MyICommand ClearJobFilter { get; set; }
@@ -86,6 +93,7 @@ namespace QAQC_Buddy.ViewModels
             FilteredDocuments = new ObservableCollection<Document>();
             JobFilterText = "";
             DocFilterText = "";
+            IncludeCover = true;
 
             // Check to make sure the user did not copy the executable to the desktop...
             // If they did, tell them and close the application
@@ -117,7 +125,7 @@ namespace QAQC_Buddy.ViewModels
 
         public void OnPreviewDocument()
         {
-            PDFMerge.MergePDFs(new List<Document>() { SelectedDocument });
+            PDFMerge.MergePDFs(new List<Document>() { SelectedDocument }, IncludeCover);
         }
         public bool CanPreviewDocument()
         {
@@ -129,7 +137,7 @@ namespace QAQC_Buddy.ViewModels
 
         public void OnGenerateDocument()
         {
-            PDFMerge.MergePDFs(FilteredDocuments.Where(f => f.Selected == true));
+            PDFMerge.MergePDFs(FilteredDocuments.Where(f => f.Selected == true), IncludeCover);
         }
         public bool CanGenerateDocument()
         {
@@ -215,7 +223,7 @@ namespace QAQC_Buddy.ViewModels
         public void ImportSetup()
         {
             // JSON Parsing
-            string tFile = Globals.PathConfig + "gold.json";
+            string tFile = Globals.PathGold;
             if (File.Exists(tFile))
             {
                 string json = File.ReadAllText(tFile);

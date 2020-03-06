@@ -15,7 +15,7 @@ namespace QAQC_Buddy.Misc
 {
     static class PDFMerge
     {
-        public static void MergePDFs(IEnumerable<Document> pdfs)
+        public static void MergePDFs(IEnumerable<Document> pdfs, bool includeCover)
         {
             // Assemble output filename and path
             string targetFile = $"{DateTime.Now.ToString("yyyyMMddHHmmss")}_{Environment.UserName.ToString()}.pdf";
