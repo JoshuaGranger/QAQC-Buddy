@@ -1,13 +1,9 @@
-﻿using PdfSharp;
-using PdfSharp.Pdf;
+﻿using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QAQC_Buddy.Models;
 using System.Windows;
 
@@ -34,11 +30,22 @@ namespace QAQC_Buddy.Misc
             {
                 if (pdfs.Any())
                 {
+                    // Generate cover sheet if selected
+                    if (includeCover)
+                    {
+                        PdfDocument cover = Misc.CoverSheet.Generate(pdfs);
+
+                        if (cover != null)
+                            targetDoc.AddPage(cover.Pages[0]);
+                    }
+                        
+                    // Append each selected document
                     foreach (Document pdf in pdfs)
                         using (PdfDocument pdfDoc = PdfReader.Open(pdf.FullPath, PdfDocumentOpenMode.Import))
                             for (int i = 0; i < pdfDoc.PageCount; i++)
                                 targetDoc.AddPage(pdfDoc.Pages[i]);
 
+                    // Save and open the PDF file if there are pages
                     if (targetDoc.Pages.Count > 0)
                     {
                         if (!File.Exists(targetPath) || !IsFileinUse(new FileInfo(targetPath)))

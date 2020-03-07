@@ -5,8 +5,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using QAQC_Buddy.Models;
 using QAQC_Buddy.Misc;
@@ -22,7 +20,12 @@ namespace QAQC_Buddy.ViewModels
         public Craft SelectedCraft
         {
             get { return selectedCraft; }
-            set { selectedCraft = value; RaisePropertyChanged(nameof(SelectedCraft)); CraftChanged(); }
+            set 
+            { 
+                selectedCraft = value; 
+                RaisePropertyChanged(nameof(SelectedCraft)); 
+                CraftChanged();
+            }
         }
 
         // Job
@@ -32,13 +35,22 @@ namespace QAQC_Buddy.ViewModels
         public Job SelectedJob
         {
             get { return selectedJob; }
-            set { selectedJob = value; RaisePropertyChanged(nameof(SelectedJob)); JobChanged(); }
+            set 
+            { 
+                selectedJob = value; 
+                RaisePropertyChanged(nameof(SelectedJob)); 
+                JobChanged();
+            }
         }
         private string jobFilterText;
         public string JobFilterText
         {
             get { return jobFilterText; }
-            set { jobFilterText = value; RaisePropertyChanged(nameof(JobFilterText)); JobFilterChanged(); }
+            set 
+            { 
+                jobFilterText = value; 
+                RaisePropertyChanged(nameof(JobFilterText)); 
+                JobFilterChanged(); }
         }
 
         // Document
@@ -59,7 +71,12 @@ namespace QAQC_Buddy.ViewModels
         public string DocFilterText
         {
             get { return docFilterText; }
-            set { docFilterText = value; RaisePropertyChanged(nameof(DocFilterText)); DocFilterChanged(); }
+            set 
+            { 
+                docFilterText = value; 
+                RaisePropertyChanged(nameof(DocFilterText)); 
+                DocFilterChanged(); 
+            }
         }
         private bool _includeCover;
         public bool IncludeCover

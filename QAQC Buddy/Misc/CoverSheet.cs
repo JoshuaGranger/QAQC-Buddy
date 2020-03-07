@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PdfSharp.Pdf;
-using ClosedXML;
+using PdfSharp.Pdf.IO;
 using ClosedXML.Excel;
+using Spire.Xls;
 using QAQC_Buddy.Models;
 
 namespace QAQC_Buddy.Misc
 {
     static class CoverSheet
     {
-        public static PdfDocument Generate(List<Document> documents)
+        public static PdfSharp.Pdf.PdfDocument Generate(IEnumerable<Document> documents)
         {
             // Get included document names
             List<string> names = new List<string>();
@@ -32,14 +29,13 @@ namespace QAQC_Buddy.Misc
             }
 
             // Check that the user did not try to include too many documents
-            if(names.Count > 24)
+            if(names.Count > 23)
             {
                 Globals.ShowMsg("It appears that you have included more than 24 documents. The cover sheet cannot handle this many documents. Please use less documents if you want an" +
                     " automatically generated cover sheet.", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
 
                 return null;
             }
-
 
             // Output File Information
             // Assemble output filename and path
@@ -52,23 +48,28 @@ namespace QAQC_Buddy.Misc
             if (!System.IO.Directory.Exists(Globals.PathFiles))
                 System.IO.Directory.CreateDirectory(Globals.PathFiles);
 
-
-            // Open cover spreadsheet and add the items
+            // Open cover spreadsheet and add the items using ClosedXML
             if (names != null)
             {
-                using (var workbook = new XLWorkbook(Globals.PathCover))
+                using (var wb = new XLWorkbook(Globals.PathCover))
                 {
-                    var worksheet = workbook.Worksheet(0);
+                    var ws = wb.Worksheet(1);
 
                     for (int i = 0; i < names.Count; i++)
-                        worksheet.Cell(i + 7, 1).Value = names[i];
+                        ws.Cell(i + 7, 1).Value = names[i];
 
-                    workbook.SaveAs(targetFileExcel);
+                    wb.SaveAs(targetPathExcel);
                 }
             }
 
+            // Convert the new spreadsheet to PDF using FreeSpire
+            Workbook workbook = new Workbook();
+            workbook.LoadFromFile(targetPathExcel);
+            workbook.SaveToFile(targetPathPDF, Spire.Xls.FileFormat.PDF);
+
             // Return result
-            return new PdfDocument();
+            var output = PdfReader.Open(targetPathPDF, PdfDocumentOpenMode.Import);
+            return output;
         }
     }
 }
