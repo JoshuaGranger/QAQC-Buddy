@@ -6,12 +6,14 @@ namespace QAQC_Buddy.Misc
 {
     public class Globals
     {
+        // Definitions
         public static string PathExe = AppDomain.CurrentDomain.BaseDirectory;
         public static string PathFiles = Path.GetFullPath(Path.Combine(PathExe, "..", "Output Files\\"));
         public static string PathConfig = Path.GetFullPath(Path.Combine(PathExe, "..", "Configuration\\"));
         public static string PathCover = PathConfig + "Cover.xlsx";
         public static string PathGold = PathConfig + "gold.json";
 
+        // Generate a messagebox and log the message to a file in Output Files directory
         public static void ShowMsg(string text, string caption, MessageBoxButton mbbutton, MessageBoxImage mbimage)
         {
             MessageBox.Show(text, caption, mbbutton, mbimage);
@@ -40,6 +42,7 @@ namespace QAQC_Buddy.Misc
             }
         }
 
+        // Check the user directory path to verify they did not copy the application to the desktop
         public static void CheckPaths()
         {
             if (PathExe.ToLower().Contains("desktop"))

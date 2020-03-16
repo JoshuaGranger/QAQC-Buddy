@@ -11,6 +11,7 @@ namespace QAQC_Buddy.Misc
 {
     static class PDFMerge
     {
+        // Merge the PDF files (sent as Document with valid FullPath property) and included a cover if selected
         public static void MergePDFs(IEnumerable<Document> pdfs, bool includeCover)
         {
             // Assemble output filename and path
@@ -78,6 +79,7 @@ namespace QAQC_Buddy.Misc
             }
         }
 
+        // Check if a file is in use
         public static bool IsFileinUse(FileInfo file)
         {
             FileStream stream = null;
