@@ -34,10 +34,16 @@ namespace QAQC_Buddy.Misc
                     // Generate cover sheet if selected
                     if (includeCover)
                     {
-                        PdfDocument cover = Misc.CoverSheet.Generate(pdfs);
+                        // Get the cover PDF path (null or value)
+                        string coverpath = Misc.CoverSheet.Generate(pdfs);
 
-                        if (cover != null)
-                            targetDoc.AddPage(cover.Pages[0]);
+                        if (coverpath != null)
+                        {
+                            PdfDocument cover = PdfReader.Open(coverpath, PdfDocumentOpenMode.Import);
+
+                            if (cover != null)
+                                targetDoc.AddPage(cover.Pages[0]);
+                        }
                     }
                         
                     // Append each selected document

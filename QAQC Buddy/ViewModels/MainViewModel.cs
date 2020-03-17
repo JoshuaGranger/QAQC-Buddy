@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using Newtonsoft.Json;
 using QAQC_Buddy.Models;
 using QAQC_Buddy.Misc;
 
@@ -142,7 +142,7 @@ namespace QAQC_Buddy.ViewModels
 
         public void OnPreviewDocument()
         {
-            PDFMerge.MergePDFs(new List<Document>() { SelectedDocument }, IncludeCover);
+            PDFMerge.MergePDFs(new List<Document>() { SelectedDocument }, false);
         }
         public bool CanPreviewDocument()
         {

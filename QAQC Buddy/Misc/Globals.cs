@@ -10,7 +10,7 @@ namespace QAQC_Buddy.Misc
         public static string PathExe = AppDomain.CurrentDomain.BaseDirectory;
         public static string PathFiles = Path.GetFullPath(Path.Combine(PathExe, "..", "Output Files\\"));
         public static string PathConfig = Path.GetFullPath(Path.Combine(PathExe, "..", "Configuration\\"));
-        public static string PathCover = PathConfig + "Cover.xlsx";
+        public static string PathCover = PathConfig + "Cover.pdf";
         public static string PathGold = PathConfig + "gold.json";
 
         // Generate a messagebox and log the message to a file in Output Files directory
