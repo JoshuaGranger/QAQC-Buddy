@@ -66,13 +66,13 @@ namespace QAQC_Buddy.Misc
                 XGraphics gfx = XGraphics.FromPdfPage(page);
 
                 // Create a font
-                XFont font = new XFont("Consolas", 11, XFontStyle.Regular);
+                XFont font = new XFont("Consolas", 10, XFontStyle.Regular);
 
                 // Draw the text on the graphic
                 for (int i = 0; i < names.Count; i++)
                 {
                     // Establish the string length and cut it to maxLen if it is longer
-                    int maxLen = 32;
+                    int maxLen = 35;
                     int actLen = names[i].Length > maxLen ? maxLen : names[i].Length;
 
                     // Write text
