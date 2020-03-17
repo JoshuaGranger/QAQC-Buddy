@@ -33,8 +33,7 @@ namespace QAQC_Buddy.Misc
             // Check that the user did not try to include too many documents
             if(names.Count > 24)
             {
-                Globals.ShowMsg("It appears that you have included more than 24 documents. The cover sheet cannot handle this many documents. Please use less documents if you want an" +
-                    " automatically generated cover sheet.", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                Globals.ShowMsg($"The maximum number of documents allowed on the cover sheet is 24. You have selected {names.Count} documents. A cover sheet will not be generated.", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
 
                 return null;
             }

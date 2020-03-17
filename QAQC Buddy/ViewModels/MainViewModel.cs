@@ -52,6 +52,28 @@ namespace QAQC_Buddy.ViewModels
                 RaisePropertyChanged(nameof(JobFilterText)); 
                 JobFilterChanged(); }
         }
+        private bool customJob;
+        public bool CustomJob
+        {
+            get { return customJob; }
+            set
+            {
+                customJob = value;
+                RaisePropertyChanged(nameof(CustomJob));
+                ListBoxState = !CustomJob;
+                CustomJobSelectionChanged();
+            }
+        }
+        private bool listBoxState;
+        public bool ListBoxState
+        {
+            get { return listBoxState; }
+            set
+            {
+                listBoxState = value;
+                RaisePropertyChanged(nameof(ListBoxState));
+            }
+        }
 
         // Document
         public ObservableCollection<Document> Documents { get; set; }
@@ -85,7 +107,6 @@ namespace QAQC_Buddy.ViewModels
             set { _includeCover = value; RaisePropertyChanged(nameof(IncludeCover)); }
         }
 
-
         // ICommand
         public MyICommand ClearJobFilter { get; set; }
         public MyICommand ClearDocFilter { get; set; }
@@ -111,6 +132,7 @@ namespace QAQC_Buddy.ViewModels
             JobFilterText = "";
             DocFilterText = "";
             IncludeCover = true;
+            CustomJob = false;
 
             // Check to make sure the user did not copy the executable to the desktop...
             // If they did, tell them and close the application
@@ -142,7 +164,7 @@ namespace QAQC_Buddy.ViewModels
 
         public void OnPreviewDocument()
         {
-            PDFMerge.MergePDFs(new List<Document>() { SelectedDocument }, false);
+            System.Diagnostics.Process.Start(SelectedDocument.FullPath);
         }
         public bool CanPreviewDocument()
         {
@@ -177,14 +199,6 @@ namespace QAQC_Buddy.ViewModels
                     foreach (Job j in SelectedCraft.Jobs)
                         if (j.Name.ToLower().Contains(JobFilterText.ToLower()))
                             FilteredJobs.Add(j);
-
-            // If a "Custom" entry exists, put it first
-            if (FilteredJobs.Any(x => x.Name == "Custom"))
-            {
-                int index = FilteredJobs.IndexOf(FilteredJobs.First(x => x.Name == "Custom"));
-                if (index != 0)
-                    FilteredJobs.Move(index, 0);
-            }
         }
 
         public void DocFilterChanged()
@@ -234,6 +248,21 @@ namespace QAQC_Buddy.ViewModels
                     else
                         Documents.First(d => d.FullPath == jdoc).Selected = true;
                 }
+            }
+        }
+
+        public void CustomJobSelectionChanged()
+        {
+            if (CustomJob)
+            {
+                var custJob = new Job()
+                {
+                    DocumentsIncluded = new List<string>(),
+                    Name = "Custom"
+                };
+
+                SelectedJob = custJob;
+                JobFilterChanged();
             }
         }
 
