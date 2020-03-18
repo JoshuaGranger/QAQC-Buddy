@@ -75,7 +75,7 @@ namespace QAQC_Buddy.Misc
                     int actLen = names[i].Length > maxLen ? maxLen : names[i].Length;
 
                     // Write text
-                    gfx.DrawString(names[i].Substring(0, actLen), font, XBrushes.Black, new XRect(20, 220 + (i * 18.29), 266, 40), XStringFormats.CenterLeft);
+                    gfx.DrawString(names[i].Substring(0, actLen), font, XBrushes.Black, new XRect(21.5, 220 + (i * 18.29), 266, 40), XStringFormats.CenterLeft);
                 }
 
                 // Save the document
