@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace QAQC_Buddy.Models
 {
-    class Document : INotifyPropertyChanged
+    public class Document : INotifyPropertyChanged
     {
         // Properties
         public string FolderPath { get; set; }

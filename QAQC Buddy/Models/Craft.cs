@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace QAQC_Buddy.Models
 {
     // Constructor
-    class Craft
+    public class Craft
     {
         // Properties
         public string Name { get; set; }

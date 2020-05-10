@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QAQC_Buddy.Models
 {
-    class Job
+    public class Job
     {
         // Properties
         public string Name { get; set; }

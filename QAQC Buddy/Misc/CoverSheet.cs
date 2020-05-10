@@ -10,15 +10,27 @@ using QAQC_Buddy.Models;
 
 namespace QAQC_Buddy.Misc
 {
-    static class CoverSheet
+    public class CoverSheet
     {
-        public static string Generate(IEnumerable<Document> documents)
+        public List<string> DocumentNames { get; set; }
+        public string Lockbox { get; set; }
+        public string Date { get; set; }
+        public string EquipmentDesc { get; set; }
+        public string WorkOrder { get; set; }
+        public string DocumentPath { get; set; }
+
+        public CoverSheet()
+        {
+            DocumentNames = new List<string>();
+            Lockbox = Date = EquipmentDesc = WorkOrder = DocumentPath = "";
+        }
+
+        public string Generate(IEnumerable<Document> documents)
         {
             // Get included document names
-            List<string> names = new List<string>();
             foreach(Document d in documents)
             {
-                names.Add(d.ShortFileName);
+                DocumentNames.Add(d.ShortFileName);
             }
 
             // Check that the cover sheet template exists
@@ -31,9 +43,9 @@ namespace QAQC_Buddy.Misc
             }
 
             // Check that the user did not try to include too many documents
-            if(names.Count > 24)
+            if(DocumentNames.Count > 24)
             {
-                Globals.ShowMsg($"The maximum number of documents allowed on the cover sheet is 24. You have selected {names.Count} documents. A cover sheet will not be generated.", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                Globals.ShowMsg($"The maximum number of documents allowed on the cover sheet is 24. You have selected {DocumentNames.Count} documents. A cover sheet will not be generated.", "Warning", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
 
                 return null;
             }
@@ -55,27 +67,44 @@ namespace QAQC_Buddy.Misc
                 return null;
             }
 
+            // Prompt the user for some cover sheet details
+            CoverDialogWindow cvrDlg = new CoverDialogWindow(this);
+            cvrDlg.Owner = Application.Current.MainWindow;
+            cvrDlg.ShowDialog();
+
             // Open the document
             using (PdfDocument document = PdfReader.Open(Globals.PathCover, PdfDocumentOpenMode.Modify))
             {
-                // Get the page
+                // Get the PdfDocument page for the cover sheet
                 var page = document.Pages[0];
 
-                // Get an XGraphics object for drawing
+                // Get an XGraphics object for drawing and create a font
                 XGraphics gfx = XGraphics.FromPdfPage(page);
+                XFont font_docs = new XFont("Consolas", 10, XFontStyle.Regular);
+                XFont font_hdr = new XFont("Consolas", 12, XFontStyle.Regular);
 
-                // Create a font
-                XFont font = new XFont("Consolas", 10, XFontStyle.Regular);
+                // Draw the Lockbox/set #
+                gfx.DrawString(Lockbox, font_hdr, XBrushes.Black, new XRect(120, 119, 1, 1), XStringFormats.CenterLeft);
 
-                // Draw the text on the graphic
-                for (int i = 0; i < names.Count; i++)
+                // Draw the Date
+                gfx.DrawString(Date, font_hdr, XBrushes.Black, new XRect(320, 119, 1, 1), XStringFormats.CenterLeft);
+
+                // Draw the Work Order #
+                gfx.DrawString(WorkOrder, font_hdr, XBrushes.Black, new XRect(130, 144, 1, 1), XStringFormats.CenterLeft);
+
+                // Draw the Equipment Description
+                gfx.DrawString(EquipmentDesc, font_hdr, XBrushes.Black, new XRect(105, 168, 1, 1), XStringFormats.CenterLeft);
+
+                // Draw the text on the graphic for the documents list
+                for (int i = 0; i < DocumentNames.Count; i++)
                 {
                     // Establish the string length and cut it to maxLen if it is longer
+                    // since there is a limited number of characters that can fit in the box
                     int maxLen = 35;
-                    int actLen = names[i].Length > maxLen ? maxLen : names[i].Length;
+                    int actLen = DocumentNames[i].Length > maxLen ? maxLen : DocumentNames[i].Length;
 
                     // Write text
-                    gfx.DrawString(names[i].Substring(0, actLen), font, XBrushes.Black, new XRect(21.5, 220 + (i * 18.29), 266, 40), XStringFormats.CenterLeft);
+                    gfx.DrawString(DocumentNames[i].Substring(0, actLen), font_docs, XBrushes.Black, new XRect(21.5, 220 + (i * 18.29), 266, 40), XStringFormats.CenterLeft);
                 }
 
                 // Save the document

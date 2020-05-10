@@ -83,6 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CoverDialogWindow.xaml.cs">
+      <DependentUpon>CoverDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Misc\CoverSheet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\MyICommand.cs" />
@@ -93,6 +96,10 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Page Include="CoverDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
