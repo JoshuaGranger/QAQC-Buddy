@@ -1,4 +1,4 @@
-﻿<Window x:Class="QAQC_Buddy.MainWindow"
+﻿<Window x:Class="QAQC_Buddy.LockboxWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:QAQC_Buddy"
         xmlns:views="clr-namespace:QAQC_Buddy.Views"
         mc:Ignorable="d"
-        Title="QAQC Buddy"
-        Height="517"
-        Width="830"
-        MinHeight="517"
-        MinWidth="1000">
+        Title="Lockbox Generator"
+        Height="450"
+        Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
     <Grid>
-        <views:MainView/>
+        
     </Grid>
 </Window>

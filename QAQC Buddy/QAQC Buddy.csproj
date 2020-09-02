@@ -86,17 +86,28 @@
     <Compile Include="CoverDialogWindow.xaml.cs">
       <DependentUpon>CoverDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LockboxWindow.xaml.cs">
+      <DependentUpon>LockboxWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Misc\CoverSheet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\MyICommand.cs" />
     <Compile Include="Misc\PDFMerge.cs" />
     <Compile Include="Models\Craft.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="ViewModels\LockboxViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\LockboxView.xaml.cs">
+      <DependentUpon>LockboxView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Page Include="CoverDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LockboxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\LockboxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,18 +161,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\Data-Clear-Filters-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\Close-Window-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\Data-Clear-Filters-icon2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\funnel-minus-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -167,12 +170,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\Icons8-Windows-8-Data-Clear-Filters.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\Icons8-Ios7-Data-Clear-Filters.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Pelfusion-Long-Shadow-Media-Document.ico" />
@@ -191,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Oxygen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Lock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

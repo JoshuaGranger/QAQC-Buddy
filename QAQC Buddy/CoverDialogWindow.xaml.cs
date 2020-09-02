@@ -19,21 +19,21 @@ namespace QAQC_Buddy
     /// </summary>
     public partial class CoverDialogWindow : Window
     {
-        private Misc.CoverSheet CoverSheet;
+        private Misc.CoverSheet _coverSheet;
 
         public CoverDialogWindow(Misc.CoverSheet coverSheet)
         {
             InitializeComponent();
-            CoverSheet = coverSheet;
+            _coverSheet = coverSheet;
         }
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             // Parse the textbox values into the object
-            CoverSheet.Lockbox = lockbox.Text;
-            CoverSheet.Date = date.Text;
-            CoverSheet.WorkOrder = workOrder.Text;
-            CoverSheet.EquipmentDesc = description.Text;
+            _coverSheet.Lockbox = lockbox.Text;
+            _coverSheet.Date = date.Text;
+            _coverSheet.WorkOrder = workOrder.Text;
+            _coverSheet.EquipmentDesc = description.Text;
 
             // Close the dialog box
             this.Close();

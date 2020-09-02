@@ -7,8 +7,7 @@
              xmlns:Models="clr-namespace:QAQC_Buddy.Models"
              xmlns:Views="clr-namespace:QAQC_Buddy.Views"
              xmlns:ViewModels="clr-namespace:QAQC_Buddy.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     
     <UserControl.DataContext>
         <ViewModels:MainViewModel/>
@@ -16,11 +15,11 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"
-                              MaxWidth="400"/>
-            <!-- This will make this 1/3 of the total width -->
-            <ColumnDefinition Width="2*"/>
-            <!-- This will make this 2/3 of the total width -->
+            <ColumnDefinition Width="2*"
+                              MaxWidth="600"/>
+            <!-- This will make this 2/5 of the total width -->
+            <ColumnDefinition Width="3*"/>
+            <!-- This will make this 3/5 of the total width -->
         </Grid.ColumnDefinitions>
         <GroupBox Grid.Column="0"
                   Margin="5,5,2.5,5">
@@ -93,7 +92,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <CheckBox Grid.Column="0"
-                              Content="Create custom job"
+                              Content="Create Custom Job"
                               IsChecked="{Binding CustomJob}"
                               VerticalAlignment="Center"
                               VerticalContentAlignment="Center"
@@ -161,30 +160,43 @@
                 </ListBox>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="1*"
                                           MinWidth="130"/>
-                        <ColumnDefinition Width="190"/>
-                        <ColumnDefinition Width="190"/>
+                        <ColumnDefinition Width="165"/>
+                        <ColumnDefinition Width="142"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0"
+                    <Button Grid.Column="0"
+                            Command="{Binding GenerateLockbox}"
+                            Width="25"
+                            Height="25"
+                            Margin="0,2,0,0"
+                            HorizontalAlignment="Left"
+                            ToolTip="Create lockbox sheet">
+                        <Image Source="/Icons/Lock.PNG"
+                               Stretch="UniformToFill"/>
+                    </Button>
+                    <CheckBox Grid.Column="1"
                               Margin="0,0,5,0"
-                              Content="Include cover sheet"
+                              Content="Include QAQC Checklist"
                               IsChecked="{Binding IncludeCover}"
                               VerticalAlignment="Center"
                               VerticalContentAlignment="Center"
                               HorizontalAlignment="Right"
                               HorizontalContentAlignment="Right"/>
-                    <Button Grid.Column="1"
+                    <Button Grid.Column="2"
                             Command="{Binding PreviewDocument, UpdateSourceTrigger=PropertyChanged}"
                             Content="Preview Selected Document"
-                            Width="183"
-                            Margin="0,5,0,0"
+                            Width="160"
+                            Height="25"
+                            Margin="0,2,0,0"
                             HorizontalAlignment="Right"/>
-                    <Button Grid.Column="2"
+                    <Button Grid.Column="3"
                             Command="{Binding GenerateDocument, UpdateSourceTrigger=PropertyChanged}"
                             Content="Generate QAQC Packet"
-                            Width="183"
-                            Margin="0,5,0,0"
+                            Width="137"
+                            Height="25"
+                            Margin="0,2,0,0"
                             HorizontalAlignment="Right"/>
                 </Grid>
             </Grid>
