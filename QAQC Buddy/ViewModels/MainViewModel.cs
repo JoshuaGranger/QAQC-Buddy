@@ -112,7 +112,6 @@ namespace QAQC_Buddy.ViewModels
         public MyICommand ClearDocFilter { get; set; }
         public MyICommand PreviewDocument { get; set; }
         public MyICommand GenerateDocument { get; set; }
-        public MyICommand GenerateLockbox { get; set; }
         #endregion
 
         #region Constructor
@@ -123,7 +122,6 @@ namespace QAQC_Buddy.ViewModels
             ClearDocFilter = new MyICommand(OnClearDocFilter, CanClearDocFilter);
             PreviewDocument = new MyICommand(OnPreviewDocument, CanPreviewDocument);
             GenerateDocument = new MyICommand(OnGenerateDocument, CanGenerateDocument);
-            GenerateLockbox = new MyICommand(OnGenerateLockbox, CanGenerateLockbox);
 
             // Initializations
             Crafts = new ObservableCollection<Craft>();
@@ -181,18 +179,6 @@ namespace QAQC_Buddy.ViewModels
             PDFMerge.MergePDFs(FilteredDocuments.Where(f => f.Selected == true), IncludeCover);
         }
         public bool CanGenerateDocument()
-        {
-            return true;
-        }
-
-        public void OnGenerateLockbox()
-        {
-            // Generate a dialog window to create the lockbox
-            LockboxWindow lbDlg = new LockboxWindow(Jobs.ToList());
-            lbDlg.Owner = Application.Current.MainWindow;
-            lbDlg.ShowDialog();
-        }
-        public bool CanGenerateLockbox()
         {
             return true;
         }

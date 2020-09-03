@@ -86,9 +86,6 @@
     <Compile Include="CoverDialogWindow.xaml.cs">
       <DependentUpon>CoverDialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LockboxWindow.xaml.cs">
-      <DependentUpon>LockboxWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Misc\CoverSheet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\MyICommand.cs" />
@@ -104,10 +101,6 @@
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Page Include="CoverDialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LockboxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,9 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Oxygen.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\Lock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

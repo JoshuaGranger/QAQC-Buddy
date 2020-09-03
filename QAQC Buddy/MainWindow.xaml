@@ -12,6 +12,13 @@
         MinHeight="517"
         MinWidth="1000">
     <Grid>
-        <views:MainView/>
+        <TabControl>
+            <TabItem Header="QAQC Packet Generator">
+                <views:MainView/>
+            </TabItem>
+            <TabItem Header="Lockbox Sheet Generator">
+                <views:LockboxView/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

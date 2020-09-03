@@ -160,38 +160,27 @@
                 </ListBox>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="1*"
                                           MinWidth="130"/>
                         <ColumnDefinition Width="165"/>
                         <ColumnDefinition Width="142"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0"
-                            Command="{Binding GenerateLockbox}"
-                            Width="25"
-                            Height="25"
-                            Margin="0,2,0,0"
-                            HorizontalAlignment="Left"
-                            ToolTip="Create lockbox sheet">
-                        <Image Source="/Icons/Lock.PNG"
-                               Stretch="UniformToFill"/>
-                    </Button>
-                    <CheckBox Grid.Column="1"
+                    <CheckBox Grid.Column="0"
                               Margin="0,0,5,0"
-                              Content="Include QAQC Checklist"
+                              Content="Include QAQC Checklist Cover Sheet"
                               IsChecked="{Binding IncludeCover}"
                               VerticalAlignment="Center"
                               VerticalContentAlignment="Center"
                               HorizontalAlignment="Right"
                               HorizontalContentAlignment="Right"/>
-                    <Button Grid.Column="2"
+                    <Button Grid.Column="1"
                             Command="{Binding PreviewDocument, UpdateSourceTrigger=PropertyChanged}"
                             Content="Preview Selected Document"
                             Width="160"
                             Height="25"
                             Margin="0,2,0,0"
                             HorizontalAlignment="Right"/>
-                    <Button Grid.Column="3"
+                    <Button Grid.Column="2"
                             Command="{Binding GenerateDocument, UpdateSourceTrigger=PropertyChanged}"
                             Content="Generate QAQC Packet"
                             Width="137"
