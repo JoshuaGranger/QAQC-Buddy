@@ -7,18 +7,12 @@
         xmlns:views="clr-namespace:QAQC_Buddy.Views"
         mc:Ignorable="d"
         Title="QAQC Buddy"
-        Height="517"
-        Width="830"
+        Height="830"
+        Width="1117"
         MinHeight="517"
-        MinWidth="1000">
+        MinWidth="830">
+
     <Grid>
-        <TabControl>
-            <TabItem Header="QAQC Packet Generator">
-                <views:MainView/>
-            </TabItem>
-            <TabItem Header="Lockbox Sheet Generator">
-                <views:LockboxView/>
-            </TabItem>
-        </TabControl>
+        <views:MainView/>
     </Grid>
 </Window>

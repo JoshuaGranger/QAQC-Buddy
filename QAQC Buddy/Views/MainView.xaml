@@ -8,187 +8,49 @@
              xmlns:Views="clr-namespace:QAQC_Buddy.Views"
              xmlns:ViewModels="clr-namespace:QAQC_Buddy.ViewModels"
              mc:Ignorable="d">
-    
+
     <UserControl.DataContext>
         <ViewModels:MainViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"
-                              MaxWidth="600"/>
-            <!-- This will make this 2/5 of the total width -->
-            <ColumnDefinition Width="3*"/>
-            <!-- This will make this 3/5 of the total width -->
-        </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0"
-                  Margin="5,5,2.5,5">
-            <GroupBox.Header>
-                <TextBlock FontWeight="Bold"
-                           FontSize="12"
-                           Text="Job List"></TextBlock>
-            </GroupBox.Header>
-            <Grid Margin="3,5,3,3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="25"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Craft:"
-                           Grid.Column="0"
-                           FontSize="12"
-                           VerticalContentAlignment="Center"
-                           VerticalAlignment="Center"/>
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Crafts}"
-                              DisplayMemberPath="Name"
-                              SelectedItem="{Binding SelectedCraft}"
-                              VerticalContentAlignment="Center"
-                              VerticalAlignment="Center"/>
-                </Grid>
-                <Grid Grid.Row="1"
-                      Margin="0,3,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="25"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Filter:"
-                           Grid.Column="0"
-                           FontSize="12"
-                           VerticalContentAlignment="Center"
-                           VerticalAlignment="Center"/>
-                    <!-- Without UpdateSourceTrigger on the TextBox, the property doesn't update until LostFocus -->
-                    <TextBox Text="{Binding JobFilterText, UpdateSourceTrigger=PropertyChanged}"
-                             Grid.Column="1"
-                             Margin="0,0,3,0"
-                             VerticalContentAlignment="Center"
-                             VerticalAlignment="Center"
-                             Height="25"/>
-                    <Button Command="{Binding ClearJobFilter}"
-                            Width="25"
-                            Grid.Column="2"
-                            Height="25">
-                        <Image Source="/Icons/Oxygen.ico" Stretch="UniformToFill"/>
-                    </Button>
-                </Grid>
-                <Grid Grid.Row="2"
-                      Margin="0,5,0,0">
-                    <ListBox ItemsSource="{Binding FilteredJobs}"
-                             DisplayMemberPath="Name"
-                             SelectedItem="{Binding SelectedJob}"
-                             ScrollViewer.VerticalScrollBarVisibility="Visible"
-                             IsEnabled="{Binding ListBoxState}"/>
-                </Grid>
-                <Grid Grid.Row="3"
-                      Margin="0,3,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0"
-                              Content="Create Custom Job"
-                              IsChecked="{Binding CustomJob}"
-                              VerticalAlignment="Center"
-                              VerticalContentAlignment="Center"
-                              HorizontalAlignment="Center"
-                              HorizontalContentAlignment="Center"/>
-                </Grid>
-            </Grid>
-        </GroupBox>
-        <GroupBox Grid.Column="1"
-                  Margin="2.5,5,5,5">
-            <GroupBox.Header>
-                <TextBlock FontWeight="Bold"
-                           FontSize="12"
-                           Text="Documents"></TextBlock>
-            </GroupBox.Header>
-            <Grid Margin="3,5,3,3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="27"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="25"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Content="Filter:"
-                           Grid.Column="0"
-                           FontSize="12"
-                           VerticalContentAlignment="Center"
-                           VerticalAlignment="Center"/>
-                    <!-- Without UpdateSourceTrigger on the TextBox, the property doesn't update until LostFocus -->
-                    <TextBox Text="{Binding DocFilterText, UpdateSourceTrigger=PropertyChanged}"
-                             Grid.Column="1"
-                             Margin="0,0,3,0"
-                             VerticalContentAlignment="Center"
-                             VerticalAlignment="Center"
-                             Height="25"/>
-                    <Button Command="{Binding ClearDocFilter}"
-                            Width="25"
-                            Grid.Column="2"
-                            Height="25">
-                        <Image Source="/Icons/Oxygen.ico" Stretch="UniformToFill"/>
-                    </Button>
-                </Grid>
-                <ListBox Grid.Row="1"
-                         ItemsSource="{Binding FilteredDocuments}"
-                         Margin="0,3,0,0"
-                         ScrollViewer.VerticalScrollBarVisibility="Visible"
-                         SelectedItem="{Binding SelectedDocument, Mode=TwoWay}">
-                    <!-- How to add checkbox: https://stackoverflow.com/questions/4527286/how-to-implement-a-listbox-of-checkboxes-in-wpf -->
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <CheckBox Margin="5,2.5,5,0"
-                                          IsChecked="{Binding Selected}"/>
-                                <TextBlock Text="{Binding PrettyCraftName}"
-                                           FontWeight="Medium"
-                                           Width="120"/>
-                                <TextBlock Text="{Binding ShortFileName}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"
-                                          MinWidth="130"/>
-                        <ColumnDefinition Width="165"/>
-                        <ColumnDefinition Width="142"/>
-                    </Grid.ColumnDefinitions>
-                    <CheckBox Grid.Column="0"
-                              Margin="0,0,5,0"
-                              Content="Include QAQC Checklist Cover Sheet"
-                              IsChecked="{Binding IncludeCover}"
-                              VerticalAlignment="Center"
-                              VerticalContentAlignment="Center"
-                              HorizontalAlignment="Right"
-                              HorizontalContentAlignment="Right"/>
-                    <Button Grid.Column="1"
-                            Command="{Binding PreviewDocument, UpdateSourceTrigger=PropertyChanged}"
-                            Content="Preview Selected Document"
-                            Width="160"
-                            Height="25"
-                            Margin="0,2,0,0"
-                            HorizontalAlignment="Right"/>
-                    <Button Grid.Column="2"
-                            Command="{Binding GenerateDocument, UpdateSourceTrigger=PropertyChanged}"
-                            Content="Generate QAQC Packet"
-                            Width="137"
-                            Height="25"
-                            Margin="0,2,0,0"
-                            HorizontalAlignment="Right"/>
-                </Grid>
-            </Grid>
-        </GroupBox>
+        <TabControl BorderBrush="Gainsboro">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="DarkGray" CornerRadius="4,4,0,0" Margin="2,2,2,-1">
+                                    <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2,10,2"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="White"/>
+                                        <Setter TargetName="Border" Property="Height" Value="22"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#FFE6E6E6"/>
+                                        <Setter TargetName="Border" Property="Height" Value="20"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True" SourceName="Border">
+                                        <Setter TargetName="Border" Property="Background" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="QAQC Packet">
+                <Views:PacketView/>
+            </TabItem>
+            <TabItem Header="Lockbox Sheet">
+                <Views:LockboxView/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

@@ -94,11 +94,15 @@
     <Compile Include="Models\Job.cs" />
     <Compile Include="ViewModels\LockboxViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PacketViewModel.cs" />
     <Compile Include="Views\LockboxView.xaml.cs">
       <DependentUpon>LockboxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PacketView.xaml.cs">
+      <DependentUpon>PacketView.xaml</DependentUpon>
     </Compile>
     <Page Include="CoverDialogWindow.xaml">
       <SubType>Designer</SubType>
@@ -121,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PacketView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,7 +188,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\Oxygen.ico" />
+    <Resource Include="Icons\clear-filter24.png" />
+    <Resource Include="Icons\edit32.png" />
+    <Resource Include="Icons\remove32.png" />
+    <Resource Include="Icons\right-arrow32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\down-arrow32.png" />
+    <Resource Include="Icons\up-arrow32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\finish32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
